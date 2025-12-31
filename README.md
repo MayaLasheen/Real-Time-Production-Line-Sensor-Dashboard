@@ -13,6 +13,22 @@ The system includes a graphical user interface (GUI), an alarm logging mechanism
 
 ---
 
+## Setup Steps
+
+1. Clone the repository:
+   git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+   cd YOUR_REPOSITORY
+
+2. Create a virtual environment (optional but recommended):
+   python -m venv venv
+   source venv/bin/activate  (Linux/macOS)
+   venv\Scripts\activate     (Windows)
+
+3. Install dependencies:
+   pip install -r requirements.txt
+
+---
+
 ## Features
 - Real-time monitoring of multiple sensors
 - Concurrent sensor handling using threads
@@ -139,6 +155,63 @@ python tcp_sensor_simulator.py
 Launch the GUI application:
 python main.py
 
+The simulator must be started first because it acts as the TCP server for each sensor.
+
+---
+
+## Communication Protocol Description
+
+The system uses a TCP-based client-server architecture.
+
+- Each sensor runs as a TCP server on a unique port.
+- The monitoring application acts as a TCP client.
+- Communication uses IPv4 and TCP to ensure reliable, ordered data delivery.
+
+### Message Format
+Each sensor sends ASCII-encoded messages terminated by a newline character.
+
+Format:
+timestamp|value|status
+
+Example:
+2025-01-05 14:32:10|42.7|OK
+
+Where:
+- timestamp: Local sensor timestamp
+- value: Sensor reading (float)
+- status: OK or FAULTY
+
+### Update Rate
+- Normal operation: 2 Hz (one message every 0.5 seconds)
+- Faulty state: Reduced update rate to simulate sensor issues
+
+---
+
+## API Documentation
+
+The system exposes a REST API using Flask for remote monitoring.
+
+### Get Current Sensor Data
+
+Endpoint:
+GET /api/sensors
+
+Description:
+Returns the current value, timestamp, and status of all sensors.
+
+Example Response:
+{
+  "Temperature": {
+    "value": 42.7,
+    "timestamp": "2025-01-05 14:32:10",
+    "status": "OK"
+  },
+  "Pressure": {
+    "value": null,
+    "timestamp": "2025-01-05 14:32:09",
+    "status": "FAULTY"
+  }
+}
 
 ---
 
