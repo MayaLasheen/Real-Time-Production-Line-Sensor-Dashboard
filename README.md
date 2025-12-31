@@ -152,6 +152,11 @@ Basic unit tests are included to verify:
 
 Tests are written using pytest and focus on core system logic rather than GUI components.
 
+Run the unit tests using:
+```bash
+pytest test_system.py
+```
+
 ---
 
 ## Running the Project
