@@ -16,15 +16,25 @@ The system includes a graphical user interface (GUI), an alarm logging mechanism
 ## Setup Steps
 
 1. Clone the repository:
+   ```bash
    git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
    cd YOUR_REPOSITORY
 
-2. Create a virtual environment (optional but recommended):
+3. Create a virtual environment (optional but recommended):
+   ```bash
    python -m venv venv
-   source venv/bin/activate  (Linux/macOS)
-   venv\Scripts\activate     (Windows)
+   ```
+   Then activate it:
+   - Linux/macOS
+   ```bash
+   source venv/bin/activate
+   ```
+   - Windows
+   ```bash
+   venv\Scripts\activate     
 
-3. Install dependencies:
+5. Install dependencies:
+   ```bash
    pip install -r requirements.txt
 
 ---
@@ -148,13 +158,15 @@ Tests are written using pytest and focus on core system logic rather than GUI co
 
 ### Step 1: Start Sensor Simulators
 Run the sensor simulator to start all simulated sensors: 
+```bash
 python tcp_sensor_simulator.py
-
+```
 
 ### Step 2: Start the Main Application
 Launch the GUI application:
+```bash
 python main.py
-
+```
 The simulator must be started first because it acts as the TCP server for each sensor.
 
 ---
