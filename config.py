@@ -26,7 +26,6 @@ EMAIL = {
 
 ALERTS = {
     "email_throttle_seconds": 300,
-    "tray_notification_duration": 3000,
     "plot_buffer_size": 40
 }
 
