@@ -22,15 +22,9 @@ class MaintenanceConsoleController:
         self.logger.log("All alarms cleared by maintenance")
 
     def request_snapshot(self):
-        # self.logger.log("Snapshot requested")
-        # for row in range(self.main.ui.tableWidget.rowCount()):
-        #     sensor = self.main.ui.tableWidget.item(row, 0).text()
-        #     value = self.main.ui.tableWidget.item(row, 2).text()
-        #     status = self.main.ui.tableWidget.item(row, 3).text()
-        #     self.logger.log(f"{sensor}: value={value}, status={status}")
-        # self.logger.log("Snapshot ended")
         self.main.alarm_log_window.save_alarms()
         self.logger.log("All alarms saved by maintenance")
         
     
         
+
