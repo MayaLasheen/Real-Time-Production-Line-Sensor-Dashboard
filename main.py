@@ -159,7 +159,6 @@ class MainWindow(QtWidgets.QMainWindow):
             if not self.muted:
                 if sensor_name not in self.acknowledged_alarms:
                     # Notify
-                    print("Help")
                     self.tray.showMessage(
                         f"{sensor_name} Alarm",
                         f"{sensor_name} value is out of range.",
@@ -173,13 +172,12 @@ class MainWindow(QtWidgets.QMainWindow):
                     
                     # Avoids throttling emails
                     if now - last_sent > self.email_throttle_seconds:
-                        self.last_email_time[sensor_name] = now              
-                        # Commented to avoid spamming my email :)
+                        self.last_email_time[sensor_name] = now      
                         QtCore.QThreadPool.globalInstance().start(
                             lambda: send_email("ALARM", f"{sensor_name} readings are out of range.")
                         )
-            else:
-                print("Muted")
+            # else:
+            #     print("Muted")
             # log
             if value < low:
                 self.alarm_log_window.add_alarm(
@@ -243,14 +241,9 @@ class MainWindow(QtWidgets.QMainWindow):
             # Avoids throttling emails
             if now - last_sent > self.email_throttle_seconds:
                 self.last_email_time[sensor_name] = now              
-                # Commented to avoid spamming my email :)
-                # QtCore.QThreadPool.globalInstance().start(
-                #     lambda: send_email("ALARM", f"{sensor_name} readings are out of range.")
-                # )
-
-
-    
-
+                QtCore.QThreadPool.globalInstance().start(
+                    lambda: send_email("ALARM", f"{sensor_name} readings are out of range.")
+                )
 
 
     def update_status(self):
