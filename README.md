@@ -135,12 +135,44 @@ Each sensor has a dedicated plot showing recent values:
 
 ---
 
-## Remote Data Access
+## API Documentation
+
 The system exposes a simple API interface (via Flask) that allows:
 - Accessing current sensor readings
 - Accessing overall system status remotely
 
 This enables integration with external systems or dashboards.
+
+### Get Current Sensor Data
+
+Endpoint:
+GET /api/sensors
+
+Description:
+Returns the current value, timestamp, and status of all sensors.
+
+Example Response:
+{
+  "Temperature": {
+    "value": 42.7,
+    "timestamp": "2025-01-05 14:32:10",
+    "status": "OK"
+  },
+  "Pressure": {
+    "value": null,
+    "timestamp": "2025-01-05 14:32:09",
+    "status": "FAULTY"
+  }
+}
+
+Endpoint:
+GET /api/status
+
+Description:
+Returns the overall status of the system.
+
+Example Response:
+Overall System Status : FAULTY
 
 ---
 
@@ -204,33 +236,7 @@ Where:
 
 ---
 
-## API Documentation
 
-The system exposes a REST API using Flask for remote monitoring.
-
-### Get Current Sensor Data
-
-Endpoint:
-GET /api/sensors
-
-Description:
-Returns the current value, timestamp, and status of all sensors.
-
-Example Response:
-{
-  "Temperature": {
-    "value": 42.7,
-    "timestamp": "2025-01-05 14:32:10",
-    "status": "OK"
-  },
-  "Pressure": {
-    "value": null,
-    "timestamp": "2025-01-05 14:32:09",
-    "status": "FAULTY"
-  }
-}
-
----
 
 ## Requirements
 - Python 3.x
