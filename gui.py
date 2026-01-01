@@ -203,72 +203,31 @@ class Ui_MainWindow(object):
         __sortingEnabled = self.tableWidget.isSortingEnabled()
         self.tableWidget.setSortingEnabled(False)
         
-        # Row 0: Temperature sensor with test data
+        # Row 0: Temperature sensor
         item = self.tableWidget.item(0, 0)
         item.setText("Temperature")
         item = self.tableWidget.item(0, 1)
-        # item.setText("2024-01-15 10:30:00")  # Added timestamp
-        # item = self.tableWidget.item(0, 2)
-        # item.setText("-5")  # Test negative value
-        # item = self.tableWidget.item(0, 3)
-        # item.setText("Good")
         
-        # Row 1: Vibration sensor with test data
+        # Row 1: Vibration sensor
         item = self.tableWidget.item(1, 0)
         item.setText("Vibration")
-        # item = self.tableWidget.item(1, 1)
-        # item.setText("2024-01-15 10:31:00")  # Added timestamp
-        # item = self.tableWidget.item(1, 2)
-        # item.setText("25.5")  # Added test reading
-        # item = self.tableWidget.item(1, 3)
-        # item.setText("Normal")
         
-        # Row 2: Speed sensor with test data
+        # Row 2: Speed sensor
         item = self.tableWidget.item(2, 0)
         item.setText("Speed")
-        # item = self.tableWidget.item(2, 1)
-        # item.setText("2024-01-15 10:32:00")  # Added timestamp
-        # item = self.tableWidget.item(2, 2)
-        # item.setText("1500")  # Added test reading
-        # item = self.tableWidget.item(2, 3)
-        # item.setText("High")
         
-        # Row 3: Pressure sensor with test data
+        # Row 3: Pressure sensor
         item = self.tableWidget.item(3, 0)
         item.setText("Pressure")
-        # item = self.tableWidget.item(3, 1)
-        # item.setText("2024-01-15 10:33:00")  # Added timestamp
-        # item = self.tableWidget.item(3, 2)
-        # item.setText("1013.25")  # Added test reading
-        # item = self.tableWidget.item(3, 3)
-        # item.setText("Normal")
         
-        # Row 4: Current sensor with test data
+        # Row 4: Current sensor
         item = self.tableWidget.item(4, 0)
         item.setText("Current")
-        # item = self.tableWidget.item(4, 1)
-        # item.setText("2024-01-15 10:34:00")  # Added timestamp
-        # item = self.tableWidget.item(4, 2)
-        # item.setText("3.7")  # Added test reading
-        # item = self.tableWidget.item(4, 3)
-        # item.setText("Good")
         
-        # Add more test rows if needed
-        # Example: Row 5: Humidity sensor
-        # Make sure table has enough rows first
-        # if self.tableWidget.rowCount() > 5:
-        #     item = self.tableWidget.item(5, 0)
-        #     item.setText("Humidity")
-        #     item = self.tableWidget.item(5, 1)
-        #     item.setText("2024-01-15 10:35:00")
-        #     item = self.tableWidget.item(5, 2)
-        #     item.setText("65")  # Percentage
-        #     item = self.tableWidget.item(5, 3)
-        #     item.setText("High")
         
         self.tableWidget.setSortingEnabled(__sortingEnabled)
         
-        # Labels - remove translation
+        # Labels
         self.label.setText("Overall System Status : ")
-        self.title.setText("Sensors' Readings")  # Fixed typo in "Sensors"
+        self.title.setText("Sensors' Readings")
 
