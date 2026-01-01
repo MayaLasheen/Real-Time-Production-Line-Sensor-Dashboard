@@ -8,8 +8,6 @@ class AlarmLogWindow(QDialog):
         super().__init__()
         self.ui = Ui_AlarmLog()
         self.ui.setupUi(self)
-        self.ui.pushButton.clicked.connect(self.clear_alarms)
-        self.ui.pushButton_2.clicked.connect(self.save_alarms)
 
 
     def add_alarm(self, time, sensor, value, alarm_type):
