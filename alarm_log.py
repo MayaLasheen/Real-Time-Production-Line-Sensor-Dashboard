@@ -53,12 +53,6 @@ class Ui_AlarmLog(object):
         font.setWeight(75)
         item.setFont(font)
         self.alarmTable.setHorizontalHeaderItem(3, item)
-        self.pushButton = QtWidgets.QPushButton(AlarmLog)
-        self.pushButton.setGeometry(QtCore.QRect(540, 680, 151, 41))
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(AlarmLog)
-        self.pushButton_2.setGeometry(QtCore.QRect(780, 680, 151, 41))
-        self.pushButton_2.setObjectName("pushButton_2")
         
 
         self.retranslateUi(AlarmLog)
@@ -75,5 +69,3 @@ class Ui_AlarmLog(object):
         item.setText(_translate("AlarmLog", "Value"))
         item = self.alarmTable.horizontalHeaderItem(3)
         item.setText(_translate("AlarmLog", "Alarm Type"))
-        self.pushButton.setText(_translate("AlarmLog", "Clear"))
-        self.pushButton_2.setText(_translate("AlarmLog", "Save"))
