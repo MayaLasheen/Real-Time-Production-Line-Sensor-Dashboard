@@ -152,6 +152,14 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         self.pushButton_mute.setFont(font)
+
+        self.button_maintenance = QtWidgets.QPushButton(self.centralwidget)
+        self.button_maintenance.setGeometry(QtCore.QRect(900, 800, 221, 51))
+        self.button_maintenance.setObjectName("button_maintenance")
+        self.button_maintenance.setText("Maintenance Console")
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.button_maintenance.setFont(font)
         
         
         palette = QtGui.QPalette()
