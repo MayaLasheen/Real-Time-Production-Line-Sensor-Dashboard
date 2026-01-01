@@ -1,4 +1,3 @@
-import sys  # Need this for sys.exit
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QPushButton,
     QTextEdit, QLineEdit, QLabel, QApplication
@@ -36,12 +35,3 @@ class MaintenanceConsoleUI(QWidget):
         layout.addWidget(self.snapshot_button)
 
         self.setLayout(layout)
-
-
-
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)  # Create application instance
-    window = MaintenanceConsoleUI()
-    window.show()
-    sys.exit(app.exec_())  # Start event loop
