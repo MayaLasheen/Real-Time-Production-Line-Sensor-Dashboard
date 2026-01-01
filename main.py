@@ -23,6 +23,11 @@ from config import (
     API
 )
 
+from maintenance_console import MaintenanceConsoleUI
+from maintenance_console_controller import MaintenanceConsoleController
+from system_logger import SystemLogger
+
+
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
@@ -112,6 +117,24 @@ class MainWindow(QtWidgets.QMainWindow):
             for name in self.sensor_names
         }
 
+        # Logger
+        self.logger = SystemLogger()
+        
+        # Maintenance Console
+        self.maintenance_ui = MaintenanceConsoleUI()
+        self.maintenance_controller = MaintenanceConsoleController(
+            ui=self.maintenance_ui,
+            main_window=self,
+            logger=self.logger
+        )
+        
+        # Connect logger to console
+        self.logger.log_event.connect(self.maintenance_ui.log_view.append)
+        
+        # Optional button to open console
+        self.ui.button_maintenance.clicked.connect(self.maintenance_ui.show)
+
+
     def show_alarm_log(self):
         self.alarm_log_window.show()
 
@@ -155,7 +178,9 @@ class MainWindow(QtWidgets.QMainWindow):
         if value < low or value > high:
             status = "ALARM"
             color = QtGui.QColor(255, 200, 200)
-    
+            self.logger.log(
+                f"{sensor_name} ALARM: value={value}"
+            )
             
             if not self.muted:
                 if sensor_name not in self.acknowledged_alarms:
@@ -225,6 +250,10 @@ class MainWindow(QtWidgets.QMainWindow):
             
         self.alarm_log_window.add_alarm(
             timestamp, sensor_name, "-", "FAULTY"
+        )
+
+        self.logger.log(
+            f"{sensor_name} reported FAULTY"
         )
         
         if not self.muted and sensor_name not in self.acknowledged_alarms:
@@ -359,6 +388,11 @@ class MainWindow(QtWidgets.QMainWindow):
             QtWidgets.QSystemTrayIcon.Information,
             2000
         )
+
+        self.logger.log("All alarms acknowledged by operator")
+
+
+    
         
     def toggle_mute(self):
         self.muted = not self.muted
@@ -366,6 +400,9 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.pushButton_mute.setText("Unmute")
         else:
             self.ui.pushButton_mute.setText("Mute")
+        state = "MUTED" if self.muted else "UNMUTED"
+        self.logger.log(f"Notifications {state}")
+
         
 def send_email(subject, body):
     # Skip if email disabled
