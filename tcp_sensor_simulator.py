@@ -1,4 +1,4 @@
-## Generates Data
+## Generates Simulation Data
 
 import socket
 import random
@@ -22,11 +22,11 @@ def start_sensor(port, low, high):
     
     while True:
         # Simulate random sensor failure
-        # if random.random() < 0.1:
-        #     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        #     conn.sendall(f"{timestamp}|-|FAULTY\n".encode())
-        #     time.sleep(2)
-        #     continue
+        if random.random() < 0.1:
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            conn.sendall(f"{timestamp}|-|FAULTY\n".encode())
+            time.sleep(2)
+            continue
     
         value = random.uniform(low - 1, high + 1)
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
