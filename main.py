@@ -454,9 +454,8 @@ def start_api(main_window):
         API endpoint that returns overall system status.
         Accessible via: GET http://<server-ip>:5000/api/status
         """
-        return jsonify({
-            "overall_status": main_window.ui.label.text()  # Get status text from UI label
-        })
+        return main_window.ui.label.text()  # Get status text from UI label
+        
     
     # Start the Flask web server
     app.run(
