@@ -12,6 +12,7 @@ import smtplib
 from email.mime.text import MIMEText
 from flask import Flask, jsonify
 import threading
+import math
 
 
 from config import (
@@ -244,6 +245,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 QtCore.QThreadPool.globalInstance().start(
                     lambda: send_email("ALARM", f"{sensor_name} readings are out of range.")
                 )
+        self.update_plot(sensor_name, math.nan)        
 
 
     def update_status(self):
