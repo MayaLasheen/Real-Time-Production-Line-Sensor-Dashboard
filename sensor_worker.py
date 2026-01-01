@@ -17,7 +17,7 @@ class SensorWorker(QThread):
         super().__init__()
         self.sensor_name = sensor_name
         self.host = host # IP address / domain name
-        self.port = port # Identifies which service/program on that computer
+        self.port = port
         self.low = low
         self.high = high
         self.running = True  # Without this flag, theards would run forever.
@@ -32,19 +32,8 @@ class SensorWorker(QThread):
             sock.settimeout(3.0)
 
             while self.running:
-                # .strip() removes the invisible white spaces.
-                # data = sock.recv(1024).decode().strip()
-                # if not data:
-                #     continue # If data is null, skip to the next iteration.
-
-                # try:
-                #     value = float(data)
-                #     status = "" # Would be determined in main file.
-                # except:
-                #     status = "FAULTY"
-
-                # timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 try:
+                    # .strip() removes the invisible white spaces.
                     line = sock.recv(1024).decode().strip()
                     if not line:
                         raise ValueError("Empty packet")
